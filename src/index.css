@@ -1,42 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
+/* Movie Recommendation Website Design System */
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
+    /* Dark theme base colors */
+    --background: 220 13% 8%;
+    --foreground: 210 40% 98%;
+    
+    /* Card and surface colors */
+    --card: 220 13% 12%;
+    --card-foreground: 210 40% 98%;
+    --card-hover: 220 13% 16%;
+    
+    /* Primary brand colors - Vibrant Teal */
+    --primary: 174 72% 56%;
+    --primary-foreground: 220 13% 8%;
+    --primary-glow: 174 72% 70%;
+    
+    /* Secondary accent - Vibrant Orange */
+    --secondary: 25 95% 58%;
+    --secondary-foreground: 220 13% 8%;
+    --secondary-glow: 25 95% 70%;
+    
+    /* Tertiary accent - Purple */
+    --accent: 271 81% 56%;
+    --accent-foreground: 210 40% 98%;
+    --accent-glow: 271 81% 70%;
+    
+    /* Muted colors */
+    --muted: 220 13% 16%;
+    --muted-foreground: 217.9 10.6% 64.9%;
+    
+    /* Borders and inputs */
+    --border: 220 13% 18%;
+    --input: 220 13% 16%;
+    --ring: 174 72% 56%;
+    
+    /* Destructive colors */
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--secondary-glow)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--background)), hsl(var(--card)));
+    --gradient-overlay: linear-gradient(0deg, hsl(var(--background)) 0%, transparent 100%);
+    
+    /* Shadows */
+    --shadow-glow: 0 0 40px hsl(var(--primary) / 0.3);
+    --shadow-card: 0 8px 32px hsl(220 13% 4% / 0.4);
+    --shadow-movie: 0 4px 20px hsl(220 13% 4% / 0.6);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    --radius: 12px;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +123,34 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-poppins;
+  }
+}
+
+@layer components {
+  /* Movie card hover effects */
+  .movie-card {
+    @apply transform transition-all duration-300 hover:scale-105 hover:shadow-2xl;
+    box-shadow: var(--shadow-movie);
+  }
+  
+  .movie-card:hover {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  /* Gradient overlays */
+  .gradient-overlay {
+    background: var(--gradient-overlay);
+  }
+  
+  /* Glow effects */
+  .glow-primary {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  /* Search bar animations */
+  .search-focus {
+    @apply ring-2 ring-primary/50 border-primary;
+    box-shadow: var(--shadow-glow);
   }
 }
